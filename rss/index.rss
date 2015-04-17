@@ -1,0 +1,53 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>SAPUI5</title><description>Justin's adventures in SAPUI5 land</description><link>http://localhost:2368/</link><generator>Ghost 0.6</generator><lastBuildDate>Fri, 17 Apr 2015 22:52:04 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>SAPUI5 proxy setup</title><description>&lt;h2 id="why"&gt;why?&lt;/h2&gt;
+
+&lt;p&gt;If your SAPUI5 app needs to communicate with a server you can't just open the html file directly in a browser as the ajax calls will fail due the &lt;a href="http://en.wikipedia.org/wiki/Same-origin_policy"&gt;Same Origin Policy&lt;/a&gt; enforced by browsers. &lt;/p&gt;
+
+&lt;p&gt;We can use a proxy server to get around this problem during development.&lt;/p&gt;
+
+&lt;h2 id="how"&gt;how?&lt;/h2&gt;</description><link>http://localhost:2368/sapui5-proxy-setup/</link><guid isPermaLink="false">d1ed47d8-ce2b-47b9-8bb9-4c24b962b479</guid><category>sapui5</category><dc:creator>Justin Ramel</dc:creator><pubDate>Thu, 16 Apr 2015 12:50:06 GMT</pubDate><media:content url="http://localhost:2368/content/images/2015/04/json-proxy-1.png" medium="image"/><content:encoded>&lt;h2 id="why"&gt;why?&lt;/h2&gt;
+
+&lt;img src="http://localhost:2368/content/images/2015/04/json-proxy-1.png" alt="SAPUI5 proxy setup"&gt;&lt;p&gt;If your SAPUI5 app needs to communicate with a server you can't just open the html file directly in a browser as the ajax calls will fail due the &lt;a href="http://en.wikipedia.org/wiki/Same-origin_policy"&gt;Same Origin Policy&lt;/a&gt; enforced by browsers. &lt;/p&gt;
+
+&lt;p&gt;We can use a proxy server to get around this problem during development.&lt;/p&gt;
+
+&lt;h2 id="how"&gt;how?&lt;/h2&gt;
+
+&lt;p&gt;SAPUI5 is Javascript development so we're going to use Javascript tools that ultimately means &lt;a href="https://nodejs.org/"&gt;node.js&lt;/a&gt; &amp;amp; &lt;a href="https://www.npmjs.com/"&gt;npm&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;json-proxy&lt;/code&gt; is a simple proxy server that is easy to setup &amp;amp; configure.&lt;/p&gt;
+
+&lt;h2 id="install"&gt;install&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;npm install -g json-proxy&lt;/code&gt; - &lt;em&gt;install globally so it's available in all your projects.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;or/and&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;npm install json-proxy --save&lt;/code&gt; - &lt;em&gt;install locally and add the dependancy to your package.json file.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id="configure"&gt;configure&lt;/h2&gt;
+
+&lt;p&gt;By default json-proxy will look for a config file called &lt;code&gt;json-proxy.json&lt;/code&gt; in the directory you are running the server from. We can use this file to configure the forwarding of our ajax calls and even pass on any required authentication headers like a SAP Single Sign On ticket for example.&lt;/p&gt;
+
+&lt;p&gt;Create a &lt;code&gt;json-proxy.json&lt;/code&gt; file the root of your project.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;json-proxy.json&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  "proxy": {
+    "forward": {
+      "/sap": "https://demo-fioritrial.dispatcher.hana.ondemand.com"
+    },
+    "headers": {
+      "Cookie": "saml2_salt=XXX;MYSAPSSO2=XXX"
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we are telling the proxy to forward any request to the local url &lt;code&gt;/sap&lt;/code&gt; to the remote address &lt;code&gt;https://demo-fioritrial.dispatcher.hana.ondemand.com&lt;/code&gt;. The headers section is also adding an authentication cookie to every request to the remote address.&lt;/p&gt;
+
+&lt;h2 id="run"&gt;run&lt;/h2&gt;
+
+&lt;p&gt;From the console &lt;code&gt;cd&lt;/code&gt; into the root of your project directory and run the &lt;code&gt;json-proxy&lt;/code&gt; command.You should be greeted with all the colours of the rainbow.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2015/04/json-proxy.png" alt="SAPUI5 proxy setup"&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
